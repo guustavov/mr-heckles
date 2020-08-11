@@ -10,6 +10,15 @@ variables:
   POSTGRES_PASSWORD: "$POSTGRES_TEST_PASSWORD"
   MIX_ENV: "test"
 
+cache:
+  key:
+    files:
+      - backend/mix.lock
+  paths:
+    - backend/deps
+    - backend/_build
+    - ~/.mix
+
 before_script:
   - cd backend/
   - mix local.rebar --force
@@ -19,6 +28,8 @@ before_script:
   - mix ecto.migrate
 
 mix:
+  cache:
+    policy: pull
   script:
     - mix credo --strict
     - mix test
