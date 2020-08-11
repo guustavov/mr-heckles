@@ -1,0 +1,23 @@
+image: elixir:latest
+
+services:
+  - postgres:latest
+
+variables:
+  POSTGRES_DB: $POSTGRES_TEST_DB
+  POSTGRES_HOST: postgres
+  POSTGRES_USER: $POSTGRES_TEST_USER
+  POSTGRES_PASSWORD: "$POSTGRES_TEST_PASSWORD"
+  MIX_ENV: "test"
+
+before_script:
+  - mix local.rebar --force
+  - mix local.hex --force
+  - mix deps.get --only test
+  - mix ecto.create
+  - mix ecto.migrate
+
+mix:
+  script:
+    - mix credo --strict
+    - mix test
