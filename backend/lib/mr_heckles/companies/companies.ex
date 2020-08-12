@@ -1,9 +1,9 @@
-defmodule MrHeckles.Companies do
+defmodule MrHeckles.Companies.Companies do
   @moduledoc """
   Companies operations.
   """
 
-  alias MrHeckles.{Company, Repo}
+  alias MrHeckles.{Companies.Company, Repo}
 
   @doc """
   List all existent companies.

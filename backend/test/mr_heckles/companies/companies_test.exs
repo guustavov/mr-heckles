@@ -3,7 +3,7 @@ defmodule MrHeckles.CompaniesTest do
 
   import MrHeckles.Factory
 
-  alias MrHeckles.{Companies, Company}
+  alias MrHeckles.Companies.{Companies, Company}
 
   describe "list/0" do
     test "returns all existent companies" do

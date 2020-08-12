@@ -4,7 +4,7 @@ defmodule MrHeckles.Factory do
   """
   use ExMachina.Ecto, repo: MrHeckles.Repo
 
-  alias MrHeckles.Company
+  alias MrHeckles.Companies.Company
 
   def company_factory do
     %Company{

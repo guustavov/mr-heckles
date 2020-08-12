@@ -1,4 +1,4 @@
-defmodule MrHeckles.Company do
+defmodule MrHeckles.Companies.Company do
   @moduledoc false
 
   use Ecto.Schema
