@@ -5,8 +5,10 @@ defmodule MrHecklesWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/api", MrHecklesWeb do
+  scope "/api/v1", MrHecklesWeb do
     pipe_through :api
+
+    resources "/companies", CompanyController, except: [:new, :edit]
   end
 
   # Enables LiveDashboard only for development
@@ -16,12 +18,12 @@ defmodule MrHecklesWeb.Router do
   # If your application does not have an admins-only section yet,
   # you can use Plug.BasicAuth to set up some basic authentication
   # as long as you are also using SSL (which you should anyway).
-  if Mix.env() in [:dev, :test] do
-    import Phoenix.LiveDashboard.Router
+  # if Mix.env() in [:dev, :test] do
+  #   import Phoenix.LiveDashboard.Router
 
-    scope "/" do
-      pipe_through [:fetch_session, :protect_from_forgery]
-      live_dashboard "/dashboard", metrics: MrHecklesWeb.Telemetry
-    end
-  end
+  #   scope "/" do
+  #     pipe_through [:fetch_session, :protect_from_forgery]
+  #     live_dashboard "/dashboard", metrics: MrHecklesWeb.Telemetry
+  #   end
+  # end
 end
