@@ -11,9 +11,9 @@ defmodule MrHeckles.Companies.Companies do
   def list, do: Repo.all(Company)
 
   @doc """
-  Find a company with the given id.
+  Get a company with the given id.
   """
-  def find(id), do: Repo.get(Company, id)
+  def get!(id), do: Repo.get!(Company, id)
 
   @doc """
   Create a company.
@@ -22,6 +22,15 @@ defmodule MrHeckles.Companies.Companies do
     %Company{}
     |> Company.changeset(params)
     |> Repo.insert()
+  end
+
+  @doc """
+  Updates a company.
+  """
+  def update(%Company{} = company, attrs) do
+    company
+    |> Company.changeset(attrs)
+    |> Repo.update()
   end
 
   @doc """
