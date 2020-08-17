@@ -9,6 +9,7 @@ defmodule MrHecklesWeb.Router do
     pipe_through :api
 
     resources "/companies", CompanyController, except: [:new, :edit]
+    resources "/complaints", ComplaintController, except: [:new, :edit]
   end
 
   # Enables LiveDashboard only for development
