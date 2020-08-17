@@ -42,13 +42,13 @@ defmodule MrHeckles.ComplaintsTest do
     end
 
     test "list_complaints/0 returns all complaints" do
-      complaint = complaint_fixture()
-      assert Complaints.list_complaints() == [complaint]
+      %Complaint{id: id} = complaint_fixture()
+      assert [%Complaint{id: ^id}] = Complaints.list_complaints()
     end
 
     test "get_complaint!/1 returns the complaint with given id" do
-      complaint = complaint_fixture()
-      assert Complaints.get_complaint!(complaint.id) == complaint
+      %Complaint{id: id} = complaint_fixture()
+      assert %Complaint{id: ^id} = Complaints.get_complaint!(id)
     end
 
     test "create_complaint/1 with valid data creates a complaint" do
@@ -83,9 +83,9 @@ defmodule MrHeckles.ComplaintsTest do
     end
 
     test "update_complaint/2 with invalid data returns error changeset" do
-      complaint = complaint_fixture()
+      %Complaint{id: id} = complaint = complaint_fixture()
       assert {:error, %Ecto.Changeset{}} = Complaints.update_complaint(complaint, @invalid_attrs)
-      assert complaint == Complaints.get_complaint!(complaint.id)
+      assert %Complaint{id: ^id} = Complaints.get_complaint!(id)
     end
 
     test "delete_complaint/1 deletes the complaint" do

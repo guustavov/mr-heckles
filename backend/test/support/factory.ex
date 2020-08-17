@@ -15,14 +15,12 @@ defmodule MrHeckles.Factory do
   end
 
   def complaint_factory do
-    %Company{id: company_id} = insert(:company)
-
     %Complaint{
       title: sequence(:title, &"Complaint #{&1}"),
       city: "Curitiba",
       state: "Paraná",
       country: "Brasil",
-      company_id: company_id
+      company: build(:company)
     }
   end
 end
