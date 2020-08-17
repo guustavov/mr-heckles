@@ -50,8 +50,6 @@ defmodule MrHeckles.Complaints do
 
   """
   def create_complaint(attrs \\ %{}) do
-    IO.inspect(Complaint.changeset(%Complaint{}, attrs))
-
     %Complaint{}
     |> Complaint.changeset(attrs)
     |> Repo.insert()
