@@ -4,9 +4,13 @@ defmodule MrHeckles.Companies.Company do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias MrHeckles.Complaints.Complaint
+
   schema "companies" do
     field :description, :string
     field :name, :string
+
+    has_many :complaints, Complaint
 
     timestamps()
   end
