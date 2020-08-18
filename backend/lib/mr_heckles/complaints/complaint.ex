@@ -1,4 +1,6 @@
 defmodule MrHeckles.Complaints.Complaint do
+  @moduledoc false
+
   use Ecto.Schema
   import Ecto.Changeset
 

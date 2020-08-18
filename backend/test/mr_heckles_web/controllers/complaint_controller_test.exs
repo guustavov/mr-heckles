@@ -3,7 +3,7 @@ defmodule MrHecklesWeb.ComplaintControllerTest do
 
   import MrHeckles.Factory
 
-  alias MrHeckles.{Complaints.Complaint, Companies.Company}
+  alias MrHeckles.{Companies.Company, Complaints.Complaint}
 
   @create_attrs %{
     city: "some city",

@@ -6,7 +6,7 @@ defmodule MrHeckles.ComplaintsTest do
   alias MrHeckles.Complaints
 
   describe "complaints" do
-    alias MrHeckles.{Complaints.Complaint, Companies.Company}
+    alias MrHeckles.{Companies.Company, Complaints.Complaint}
 
     @valid_attrs %{
       city: "some city",
