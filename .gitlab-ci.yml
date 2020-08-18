@@ -32,4 +32,5 @@ mix:
     policy: pull
   script:
     - mix credo --strict
-    - mix test
+    - mix format --check-formatted
+    - mix coveralls
