@@ -11,8 +11,6 @@ defmodule MrHecklesWeb.CompanyView do
   end
 
   def render("company.json", %{company: company}) do
-    %{id: company.id,
-      name: company.name,
-      description: company.description}
+    %{id: company.id, name: company.name, description: company.description}
   end
 end
