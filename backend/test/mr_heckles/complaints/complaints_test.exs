@@ -41,9 +41,39 @@ defmodule MrHeckles.ComplaintsTest do
       insert(:complaint)
     end
 
-    test "list_complaints/0 returns all complaints" do
+    test "list_complaints/1 returns all complaints" do
       %Complaint{id: id} = complaint_fixture()
       assert [%Complaint{id: ^id}] = Complaints.list_complaints()
+    end
+
+    test "list_complaints/1 returns complaints filtered by city" do
+      %Complaint{id: id, city: city} = complaint_fixture()
+      assert [%Complaint{id: ^id, city: ^city}] = Complaints.list_complaints(%{"city" => city})
+      assert [] = Complaints.list_complaints(%{"city" => "Another city"})
+    end
+
+    test "list_complaints/1 returns complaints filtered by company_id" do
+      %Complaint{id: id, company_id: company_id} = complaint_fixture()
+      assert [%Complaint{id: ^id}] = Complaints.list_complaints(%{"company_id" => company_id})
+      assert [] = Complaints.list_complaints(%{"company_id" => company_id + 1})
+    end
+
+    test "list_complaints/1 returns complaints filtered by country" do
+      %Complaint{id: id, country: country} = complaint_fixture()
+
+      assert [%Complaint{id: ^id, country: ^country}] =
+               Complaints.list_complaints(%{"country" => country})
+
+      assert [] = Complaints.list_complaints(%{"country" => "Another country"})
+    end
+
+    test "list_complaints/1 returns complaints filtered by state" do
+      %Complaint{id: id, state: state} = complaint_fixture()
+
+      assert [%Complaint{id: ^id, state: ^state}] =
+               Complaints.list_complaints(%{"state" => state})
+
+      assert [] = Complaints.list_complaints(%{"state" => "Another state"})
     end
 
     test "get_complaint!/1 returns the complaint with given id" do
@@ -67,6 +97,7 @@ defmodule MrHeckles.ComplaintsTest do
 
     test "create_complaint/1 with invalid data returns error changeset" do
       assert {:error, %Ecto.Changeset{}} = Complaints.create_complaint(@invalid_attrs)
+      assert {:error, %Ecto.Changeset{}} = Complaints.create_complaint()
     end
 
     test "update_complaint/2 with valid data updates the complaint" do

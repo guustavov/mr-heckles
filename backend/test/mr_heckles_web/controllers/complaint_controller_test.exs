@@ -46,6 +46,11 @@ defmodule MrHecklesWeb.ComplaintControllerTest do
       conn = get(conn, Routes.complaint_path(conn, :index))
       assert json_response(conn, 200)["data"] == []
     end
+
+    test "lists complaints of a specific company", %{conn: conn} do
+      conn = get(conn, Routes.complaint_path(conn, :index, %{"company_id" => 1}))
+      assert json_response(conn, 200)["data"] == []
+    end
   end
 
   describe "create complaint" do
