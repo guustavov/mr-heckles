@@ -6,8 +6,13 @@ defmodule MrHecklesWeb.ComplaintController do
 
   action_fallback MrHecklesWeb.FallbackController
 
-  def index(conn, _params) do
-    complaints = Complaints.list_complaints()
+  def index(conn, %{"company_id" => company_id} = params) when not is_nil(company_id) do
+    complaints = Complaints.list_complaints(params)
+    render(conn, "index.json", complaints: complaints)
+  end
+
+  def index(conn, params) do
+    complaints = Complaints.list_complaints(params)
     render(conn, "index.json", complaints: complaints)
   end
 
@@ -28,7 +33,8 @@ defmodule MrHecklesWeb.ComplaintController do
   def update(conn, %{"id" => id, "complaint" => complaint_params}) do
     complaint = Complaints.get_complaint!(id)
 
-    with {:ok, %Complaint{} = complaint} <- Complaints.update_complaint(complaint, complaint_params) do
+    with {:ok, %Complaint{} = complaint} <-
+           Complaints.update_complaint(complaint, complaint_params) do
       render(conn, "show.json", complaint: complaint)
     end
   end

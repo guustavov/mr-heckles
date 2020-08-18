@@ -9,7 +9,7 @@ defmodule MrHeckles.Complaints do
   alias MrHeckles.Complaints.Complaint
 
   @doc """
-  Returns the list of complaints.
+  Build a query with given filters (if there is any) and returns the list of complaints.
 
   ## Examples
 
@@ -17,8 +17,47 @@ defmodule MrHeckles.Complaints do
       [%Complaint{}, ...]
 
   """
-  def list_complaints do
-    Repo.all(Complaint)
+  def list_complaints(filters \\ %{}) do
+    build_query(filters)
+    |> Repo.all()
+  end
+
+  defp base_query do
+    from(complaints in Complaint)
+  end
+
+  defp build_query(filters) do
+    query = base_query()
+
+    query
+    |> maybe_filter_by_city(filters["city"])
+    |> maybe_filter_by_company_id(filters["company_id"])
+    |> maybe_filter_by_country(filters["country"])
+    |> maybe_filter_by_state(filters["state"])
+  end
+
+  defp maybe_filter_by_city(query, nil), do: query
+
+  defp maybe_filter_by_city(query, city) do
+    from(complaints in query, where: complaints.city == ^city)
+  end
+
+  defp maybe_filter_by_company_id(query, nil), do: query
+
+  defp maybe_filter_by_company_id(query, company_id) do
+    from(complaints in query, where: complaints.company_id == ^company_id)
+  end
+
+  defp maybe_filter_by_country(query, nil), do: query
+
+  defp maybe_filter_by_country(query, country) do
+    from(complaints in query, where: complaints.country == ^country)
+  end
+
+  defp maybe_filter_by_state(query, nil), do: query
+
+  defp maybe_filter_by_state(query, state) do
+    from(complaints in query, where: complaints.state == ^state)
   end
 
   @doc """

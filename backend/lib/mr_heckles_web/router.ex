@@ -8,7 +8,10 @@ defmodule MrHecklesWeb.Router do
   scope "/api/v1", MrHecklesWeb do
     pipe_through :api
 
-    resources "/companies", CompanyController, except: [:new, :edit]
+    resources "/companies", CompanyController, except: [:new, :edit] do
+      resources "/complaints", ComplaintController, except: [:new, :edit]
+    end
+
     resources "/complaints", ComplaintController, except: [:new, :edit]
   end
 
