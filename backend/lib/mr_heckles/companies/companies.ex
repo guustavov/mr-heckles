@@ -36,5 +36,5 @@ defmodule MrHeckles.Companies.Companies do
   @doc """
   Deletes a company.
   """
-  def delete(%Company{} = company), do: Repo.delete(company, [stale_error_field: :id])
+  def delete(%Company{} = company), do: Repo.delete(company, stale_error_field: :id)
 end

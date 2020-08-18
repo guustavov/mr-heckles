@@ -8,7 +8,8 @@ use Mix.Config
 config :mr_heckles, MrHeckles.Repo,
   username: System.get_env("POSTGRES_TEST_USER") || "postgres",
   password: System.get_env("POSTGRES_TEST_PASSWORD") || "postgres",
-  database: System.get_env("POSTGRES_TEST_DB") || "mr_heckles_test#{System.get_env("MIX_TEST_PARTITION")}",
+  database:
+    System.get_env("POSTGRES_TEST_DB") || "mr_heckles_test#{System.get_env("MIX_TEST_PARTITION")}",
   hostname: System.get_env("POSTGRES_TEST_HOST") || "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
 
