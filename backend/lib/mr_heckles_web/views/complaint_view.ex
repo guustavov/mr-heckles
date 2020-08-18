@@ -17,9 +17,7 @@ defmodule MrHecklesWeb.ComplaintView do
       description: complaint.description,
       city: complaint.city,
       state: complaint.state,
-      country: complaint.country,
-      latitude: complaint.latitude,
-      longitude: complaint.longitude
+      country: complaint.country
     }
   end
 end
