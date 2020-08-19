@@ -1,4 +1,8 @@
 defmodule MrHeckles.ReleaseTasks do
+  @moduledoc """
+  Run migration and seeds to configured repos.
+  """
+
   @start_apps [
     :crypto,
     :ssl,
