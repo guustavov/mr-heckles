@@ -3,7 +3,7 @@ defmodule MrHecklesWeb.CompanyControllerTest do
 
   import MrHeckles.Factory
 
-  alias MrHeckles.Companies.{Company}
+  alias MrHeckles.Companies.Company
 
   @invalid_attrs %{name: nil}
 
