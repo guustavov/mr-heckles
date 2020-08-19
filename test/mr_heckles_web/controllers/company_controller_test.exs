@@ -1,22 +1,11 @@
 defmodule MrHecklesWeb.CompanyControllerTest do
   use MrHecklesWeb.ConnCase
 
-  alias MrHeckles.Companies.{Companies, Company}
+  import MrHeckles.Factory
 
-  @create_attrs %{
-    name: "company name",
-    description: "some description"
-  }
-  @update_attrs %{
-    name: "updated company name",
-    description: "some updated description"
-  }
+  alias MrHeckles.Companies.{Company}
+
   @invalid_attrs %{name: nil}
-
-  def fixture(:company) do
-    {:ok, company} = Companies.create(@create_attrs)
-    company
-  end
 
   setup %{conn: conn} do
     {:ok, conn: put_req_header(conn, "accept", "application/json")}
@@ -31,14 +20,14 @@ defmodule MrHecklesWeb.CompanyControllerTest do
 
   describe "create company" do
     test "renders company when data is valid", %{conn: conn} do
-      conn = post(conn, Routes.company_path(conn, :create), company: @create_attrs)
-      assert %{"id" => id} = json_response(conn, 201)["data"]
+      conn = post(conn, Routes.company_path(conn, :create), company: params_for(:company))
+      assert %{"id" => id, "description" => description} = json_response(conn, 201)["data"]
 
       conn = get(conn, Routes.company_path(conn, :show, id))
 
       assert %{
-               "id" => id,
-               "description" => "some description"
+               "id" => ^id,
+               "description" => ^description
              } = json_response(conn, 200)["data"]
     end
 
@@ -52,14 +41,23 @@ defmodule MrHecklesWeb.CompanyControllerTest do
     setup [:create_company]
 
     test "renders company when data is valid", %{conn: conn, company: %Company{id: id} = company} do
-      conn = put(conn, Routes.company_path(conn, :update, company), company: @update_attrs)
+      updated_fields = %{name: "updated name", description: "updated description"}
+
+      conn =
+        put(conn, Routes.company_path(conn, :update, company),
+          company: Map.merge(params_for(:company), updated_fields)
+        )
+
       assert %{"id" => ^id} = json_response(conn, 200)["data"]
 
       conn = get(conn, Routes.company_path(conn, :show, id))
 
+      %{name: updated_name, description: updated_description} = updated_fields
+
       assert %{
-               "id" => id,
-               "description" => "some updated description"
+               "id" => ^id,
+               "description" => ^updated_description,
+               "name" => ^updated_name
              } = json_response(conn, 200)["data"]
     end
 
@@ -83,7 +81,6 @@ defmodule MrHecklesWeb.CompanyControllerTest do
   end
 
   defp create_company(_) do
-    company = fixture(:company)
-    %{company: company}
+    %{company: insert(:company)}
   end
 end
