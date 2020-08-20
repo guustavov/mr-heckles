@@ -9,3 +9,24 @@ services:
       - 5432:5432
     volumes:
       - ./postgres-volume:/var/lib/postgresql/data
+
+  mr-heckles:
+    image: elixir:1.10.4
+    depends_on:
+      - postgres
+    volumes:
+      - ./:/opt/app
+    ports:
+      - 4000:4000
+    environment:
+      DATABASE_HOST: "postgres"
+    working_dir: /opt/app
+    command:
+      - /bin/sh
+      - -c
+      - |
+        mix local.rebar --force
+        mix local.hex --force
+        mix deps.get
+        mix ecto.setup
+        mix phx.server
