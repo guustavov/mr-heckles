@@ -20,6 +20,7 @@ defmodule MrHeckles.Factory do
       city: "Curitiba",
       state: "Paraná",
       country: "Brasil",
+      description: sequence(:description, &"Description of complaint #{&1}"),
       company: build(:company)
     }
   end
