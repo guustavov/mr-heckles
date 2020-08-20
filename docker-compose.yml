@@ -16,6 +16,7 @@ services:
       - postgres
     volumes:
       - ./:/opt/app
+      - /opt/app/_build
     ports:
       - 4000:4000
     environment:
