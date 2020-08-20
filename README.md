@@ -1,8 +1,53 @@
 # Mr. Heckles - Backend Engineer Challenge #
 
-Challenge proposed by Trustvox staff to evaluate backend skills.
+Challenge proposed by Trustvox staff to evaluate backend skills. The problem definition and instructions can be found [here](#problem).
 
-### Problem ###
+## Setup ##
+
+This project has some pipeline instructions configured to run on Gitlab CI/CD. One of those instructions deploys to Gigalixir, which makes the API available at https://mr-heckles.gigalixirapp.com/api/v1/ when a merge request is accepted for branch `master`.
+
+In order to easily try some features, there is also available a dump of a Postman collection with some HTTP request suggestions. This `.json` file can be found in the root of this repository.
+
+
+### Running locally ###
+
+#### With docker ####
+
+Make sure you have `docker` and `docker-compose` running and go to this repository root. Then you can run the following command (`-d` to run in detached mode - it's optional):
+
+```sh
+$ docker-compose up -d
+```
+
+This will build and run both the application and the Postgres container. After this, the API might be available at http://localhost:4000/api/v1/.
+
+#### Without docker ####
+
+Install the following dependencies:
+
+- Erlang 23.0.3
+- Elixir 1.10.4
+
+You can install it manually or via `asdf` by running the following command at the root directory:
+
+```sh
+$ asdf install
+```
+
+To install elixir dependencies and setup database, run the commands below. Before, make sure you have a Postgres server running locally on default port (5432) and acessible with default credentials ('postgres' as user and password), or change `config/dev.exs` as needed.
+
+```sh
+$ mix deps.get
+$ mix ecto.setup
+```
+
+Finally, make the API available at http://localhost:4000/api/v1/ by running:
+
+```sh
+$ mix phx.server
+```
+
+## Problem ##
 
 We need to research about locales where consumer complains are made. That complains should have at least the attributes described bellow:
 

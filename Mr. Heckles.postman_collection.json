@@ -1,0 +1,436 @@
+{
+	"info": {
+		"_postman_id": "daa7c5d5-8c86-4aa4-9cf9-6a264187681a",
+		"name": "Mr. Heckles",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Company",
+			"item": [
+				{
+					"name": "Complaints",
+					"item": [
+						{
+							"name": "Get All",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}companies/1/complaints",
+									"host": [
+										"{{api_url}}companies"
+									],
+									"path": [
+										"1",
+										"complaints"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}companies/1/complaints/1",
+									"host": [
+										"{{api_url}}companies"
+									],
+									"path": [
+										"1",
+										"complaints",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"complaint\": {\n\t\t\"title\": \"Complaint #1\",\n\t\t\"description\": \"\",\n\t\t\"city\": \"Curitiba\",\n\t\t\"state\": \"Paraná\",\n\t\t\"country\": \"Brasil\",\n\t\t\"company_id\": 1\n\t}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}companies/1/complaints",
+									"host": [
+										"{{api_url}}companies"
+									],
+									"path": [
+										"1",
+										"complaints"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"complaint\": {\n        \"city\": \"Foz do Iguaçu\",\n        \"country\": \"Brasil\",\n        \"description\": null,\n        \"latitude\": null,\n        \"longitude\": null,\n        \"state\": \"Paraná\",\n        \"title\": \"Complaint #1\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}companies/1/complaints/1",
+									"host": [
+										"{{api_url}}companies"
+									],
+									"path": [
+										"1",
+										"complaints",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}companies/1/complaints/1",
+									"host": [
+										"{{api_url}}companies"
+									],
+									"path": [
+										"1",
+										"complaints",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "8ed01b4b-8c27-4908-a0ef-118bf809cf02",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "05d3a9f5-2539-4c40-9c08-a756e83bc983",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"company\": {\n\t\t\"name\": \"Leegol\"\t\n\t}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}companies",
+							"host": [
+								"{{api_url}}companies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}companies/3/complaints",
+							"host": [
+								"{{api_url}}companies"
+							],
+							"path": [
+								"3",
+								"complaints"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}companies",
+							"host": [
+								"{{api_url}}companies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"company\": {\n\t\t\"name\": \"HugMe\",\n\t\t\"description\": \"HugMe description\"\n\t}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}companies/3",
+							"host": [
+								"{{api_url}}companies"
+							],
+							"path": [
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}companies/2",
+							"host": [
+								"{{api_url}}companies"
+							],
+							"path": [
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Complaints",
+			"item": [
+				{
+					"name": "Get All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}complaints",
+							"host": [
+								"{{api_url}}complaints"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}complaints/5",
+							"host": [
+								"{{api_url}}complaints"
+							],
+							"path": [
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"complaint\": {\n\t\t\"title\": \"Complaint #1\",\n\t\t\"description\": \"\",\n\t\t\"city\": \"Curitiba\",\n\t\t\"state\": \"Paraná\",\n\t\t\"country\": \"Brasil\",\n\t\t\"company_id\": 3\n\t}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}complaints",
+							"host": [
+								"{{api_url}}complaints"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"complaint\": {\n        \"city\": \"Foz do Iguaçu\",\n        \"country\": \"Brasil\",\n        \"description\": null,\n        \"id\": 5,\n        \"latitude\": null,\n        \"longitude\": null,\n        \"state\": \"Paraná\",\n        \"title\": \"Complaint #1\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}complaints/5",
+							"host": [
+								"{{api_url}}complaints"
+							],
+							"path": [
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}complaints/5",
+							"host": [
+								"{{api_url}}complaints"
+							],
+							"path": [
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "fa77d1aa-77a0-4c0d-9d64-890a015b97b9",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "e6d40a15-3528-428b-84f2-96f004c8c0fa",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "24437773-31d1-4482-bf0c-14883fbe57e0",
+			"key": "api_version",
+			"value": "v1",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"id": "2f228e8e-35a9-4889-b1fd-e429bf5d40d1",
+			"key": "api_url",
+			"value": "http://localhost:4000/api/v1/",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
