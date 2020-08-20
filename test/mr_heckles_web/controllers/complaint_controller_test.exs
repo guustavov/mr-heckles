@@ -5,24 +5,6 @@ defmodule MrHecklesWeb.ComplaintControllerTest do
 
   alias MrHeckles.{Companies.Company, Complaints.Complaint}
 
-  @create_attrs %{
-    city: "some city",
-    country: "some country",
-    description: "some description",
-    latitude: "some latitude",
-    longitude: "some longitude",
-    state: "some state",
-    title: "some title"
-  }
-  @update_attrs %{
-    city: "some updated city",
-    country: "some updated country",
-    description: "some updated description",
-    latitude: "some updated latitude",
-    longitude: "some updated longitude",
-    state: "some updated state",
-    title: "some updated title"
-  }
   @invalid_attrs %{
     city: nil,
     country: nil,
@@ -32,10 +14,6 @@ defmodule MrHecklesWeb.ComplaintControllerTest do
     state: nil,
     title: nil
   }
-
-  def fixture(:complaint) do
-    insert(:complaint)
-  end
 
   setup %{conn: conn} do
     {:ok, conn: put_req_header(conn, "accept", "application/json")}
@@ -57,9 +35,12 @@ defmodule MrHecklesWeb.ComplaintControllerTest do
     test "renders complaint when data is valid", %{conn: conn} do
       %Company{id: company_id} = insert(:company)
 
+      %{city: city, country: country, description: description, state: state, title: title} =
+        params = params_for(:complaint)
+
       conn =
         post(conn, Routes.complaint_path(conn, :create),
-          complaint: Map.merge(@create_attrs, %{company_id: company_id})
+          complaint: Map.merge(params, %{company_id: company_id})
         )
 
       assert %{"id" => id} = json_response(conn, 201)["data"]
@@ -67,12 +48,12 @@ defmodule MrHecklesWeb.ComplaintControllerTest do
       conn = get(conn, Routes.complaint_path(conn, :show, id))
 
       assert %{
-               "id" => id,
-               "city" => "some city",
-               "country" => "some country",
-               "description" => "some description",
-               "state" => "some state",
-               "title" => "some title"
+               "id" => ^id,
+               "city" => ^city,
+               "country" => ^country,
+               "description" => ^description,
+               "state" => ^state,
+               "title" => ^title
              } = json_response(conn, 200)["data"]
     end
 
@@ -89,18 +70,36 @@ defmodule MrHecklesWeb.ComplaintControllerTest do
       conn: conn,
       complaint: %Complaint{id: id} = complaint
     } do
-      conn = put(conn, Routes.complaint_path(conn, :update, complaint), complaint: @update_attrs)
+      updated_fields = %{
+        city: "updated city",
+        country: "updated country",
+        description: "updated description",
+        latitude: "updated latitude",
+        longitude: "updated longitude",
+        state: "updated state",
+        title: "updated title"
+      }
+
+      conn = put(conn, Routes.complaint_path(conn, :update, complaint), complaint: updated_fields)
       assert %{"id" => ^id} = json_response(conn, 200)["data"]
 
       conn = get(conn, Routes.complaint_path(conn, :show, id))
 
+      %{
+        city: updated_city,
+        country: updated_country,
+        description: updated_description,
+        state: updated_state,
+        title: updated_title
+      } = updated_fields
+
       assert %{
-               "id" => id,
-               "city" => "some updated city",
-               "country" => "some updated country",
-               "description" => "some updated description",
-               "state" => "some updated state",
-               "title" => "some updated title"
+               "id" => ^id,
+               "city" => ^updated_city,
+               "country" => ^updated_country,
+               "description" => ^updated_description,
+               "state" => ^updated_state,
+               "title" => ^updated_title
              } = json_response(conn, 200)["data"]
     end
 
@@ -124,7 +123,6 @@ defmodule MrHecklesWeb.ComplaintControllerTest do
   end
 
   defp create_complaint(_) do
-    complaint = fixture(:complaint)
-    %{complaint: complaint}
+    %{complaint: insert(:complaint)}
   end
 end
