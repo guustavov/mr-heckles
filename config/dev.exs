@@ -5,7 +5,7 @@ config :mr_heckles, MrHeckles.Repo,
   username: "postgres",
   password: "postgres",
   database: "mr_heckles_dev",
-  hostname: "localhost",
+  hostname: System.get_env("DATABASE_HOST") || "localhost",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
