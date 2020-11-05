@@ -2,9 +2,11 @@
 
 Challenge proposed by Trustvox staff to evaluate backend skills. The problem definition and instructions can be found [here](#problem).
 
+*NOTE: This project was originally developed in [this](https://gitlab.com/guustavov/mr-heckles) GitLab repository. If you're interested in more details about CI/CD setup or the development flow itself (issues, merge requests, tasks descriptions, etc) it's strongly recommended to check the project at [gitlab.com/guustavov/mr-heckles](https://gitlab.com/guustavov/mr-heckles).*
+
 ## Setup ##
 
-This project has some pipeline instructions configured to run on Gitlab CI/CD. One of those instructions deploys to Gigalixir, which makes the API available at https://mr-heckles.gigalixirapp.com/api/v1/ when a merge request is accepted for branch `master`.
+This project has some pipeline instructions configured to run on Gitlab CI/CD. One of those instructions deploys to Gigalixir, which makes the API available at https://mr-heckles.gigalixirapp.com/api/v1/ when a merge request is accepted for branch `master`. Once it's a free trial environment, it may be **expired and unavailable** in the future.
 
 In order to easily try some features, there is also available a dump of a Postman collection with some HTTP request suggestions. This `.json` file can be found in the root of this repository.
 
